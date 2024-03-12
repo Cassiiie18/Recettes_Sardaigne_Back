@@ -1,0 +1,6 @@
+@Recettes_Sardaigne_HostAddress = http://localhost:5232
+
+GET {{Recettes_Sardaigne_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
