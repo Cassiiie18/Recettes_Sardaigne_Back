@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Forms;
+using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,14 @@ namespace BLL.Mapper
 {
     public static class RecetteMapper
     {
+        public static Recette ToRecette(this RecetteForm recetteForm)
+        {
+            return new Recette()
+            {
+                nom = recetteForm.nom,
+                nombre_personnes = recetteForm.nombre_personnes,
+                photo = recetteForm.photo
+            };
+        }
     }
 }

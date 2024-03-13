@@ -11,7 +11,7 @@ namespace DAL.Interfaces
     {
         public Recette CreateRecette(Recette recette);
         public bool DeleteRecette(Recette recette);
-        public Recette UpdateRecette(Recette recette);
+        public bool UpdateRecette(Recette recette);
         public Recette GetRecetteById(int ind_recette);
         public Recette GetRecetteByName(string nom);
 

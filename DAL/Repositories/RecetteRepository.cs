@@ -20,7 +20,25 @@ namespace DAL.Repositories
 
         public Recette CreateRecette(Recette recette)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.id_recette VALUES (@nom, @nombre_personnes, @photo)";
+
+                    command.Parameters.AddWithValue("nom", recette.nom);
+                    command.Parameters.AddWithValue("nombre_personnes", recette.nombre_personnes);
+                    command.Parameters.AddWithValue("photo", recette.photo);
+
+                    connection.Open();
+
+                    recette.id_recette = Convert.ToInt32(command.ExecuteScalar());
+
+                    connection.Close();
+
+                    return recette;
+                }
+            }
         }
 
         public bool DeleteRecette(Recette recette)
@@ -101,12 +119,51 @@ namespace DAL.Repositories
 
         public Recette GetRecetteByName(string nom)
         {
-            throw new NotImplementedException();
+            using(SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT * FROM Recette WHERE name = @name";
+
+                    command.Parameters.AddWithValue("nom", nom);
+
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    Recette? r = null;
+
+                    while (reader.Read())
+                    {
+                        r = reader.ToRecette();
+                    }
+                    connection.Close();
+                    return r;
+                }
+            }
         }
 
-        public Recette UpdateRecette(Recette recette)
+        public bool UpdateRecette(Recette recette)
         {
-            throw new NotImplementedException();
+            using(SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                using(SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Recette SET nom = @nom, nombre_personnes = @nombre_personnes, photo = @photo";
+
+                    command.Parameters.AddWithValue("nom", recette.nom);
+                    command.Parameters.AddWithValue("nombre_personnes", recette.nombre_personnes);
+                    command.Parameters.AddWithValue("photo", recette.photo);
+
+                    connection.Open();
+
+                    int rowAffected = command.ExecuteNonQuery();
+
+                    connection.Close();
+
+                    return rowAffected == 1; 
+                }
+            }
         }
     }
 }
