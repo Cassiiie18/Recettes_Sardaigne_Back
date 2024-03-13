@@ -13,21 +13,24 @@ namespace BLL.Services
     public class RecetteService
     {
         private readonly IRecetteRepository _recetteRepository;
+        private readonly ITempsRepository _tempsRepository;
 
-        public RecetteService(IRecetteRepository recetteRepository)
+        public RecetteService(IRecetteRepository recetteRepository, ITempsRepository tempsRepository)
         {
             _recetteRepository = recetteRepository;
+            _tempsRepository = tempsRepository;
         }
 
-        public Recette? CreateRecette(RecetteForm recetteForm)
+        public Recette? CreateRecette(RecetteForm recetteForm, Temps temps)
         {
             Recette? r = _recetteRepository.GetRecetteByName(recetteForm.nom);
+            Temps? t = _tempsRepository.GetTempsById(temps.id_temps);
 
-            if (r == null)
+            if (r == null && t != null)
             {
                 Recette recette = recetteForm.ToRecette();
 
-                return recette = _recetteRepository.CreateRecette(recette);
+                return recette = _recetteRepository.CreateRecette(recette, temps);
             }
 
             return null;

@@ -18,21 +18,24 @@ namespace DAL.Repositories
             _connectionString = connectionString;
         }
 
-        public Recette CreateRecette(Recette recette)
+        public Recette CreateRecette(Recette recette, Temps temps)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@nom, @nombre_personnes, @photo, @gamme_prix, @difficulte);";
 
 
+
+                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@nom, @nombre_personnes, @photo, @gamme_prix, @difficulte, @id_temps);";
+
+                    command.Parameters.AddWithValue("id_temps", temps.id_temps);
                     command.Parameters.AddWithValue("Nom", recette.nom);
                     command.Parameters.AddWithValue("Nombre_personnes", recette.nombre_personnes);
                     command.Parameters.AddWithValue("Photo", recette.photo);
                     command.Parameters.AddWithValue("Gamme_prix", recette.gamme_prix);
                     command.Parameters.AddWithValue("Difficulte", recette.difficulte);
-                        
+
 
                     connection.Open();
 

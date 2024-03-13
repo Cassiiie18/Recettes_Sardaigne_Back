@@ -1,5 +1,6 @@
 ﻿using BLL.Forms;
 using BLL.Services;
+using DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace Recettes_Sardaigne.Controllers
             {
                 return BadRequest();
             }
-            _recetteService.CreateRecette(recetteForm);
+            //_recetteService.CreateRecette(recetteForm, temps);
             return Ok("Recette créée");
         }
 

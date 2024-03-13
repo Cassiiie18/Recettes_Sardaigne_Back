@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,7 +25,9 @@ namespace BLL.Forms
 
 
         [Required]
-        public string difficulte { get; set; }  
+        public string difficulte { get; set; }
+
+        public Temps Chocapic { get; set; }
 
     }
 }

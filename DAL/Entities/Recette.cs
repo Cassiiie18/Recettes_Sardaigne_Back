@@ -15,6 +15,7 @@ namespace DAL.Entities
         public string photo;
         public string gamme_prix;
         public string difficulte;
+        public Temps temps; 
 
         public Recette(int id_recette, string nom, int nombre_personnes, string photo)
         {

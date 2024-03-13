@@ -46,7 +46,7 @@ namespace BLL.Services
             return _tempsRepository.GetTempsById(id_temps);
         }
 
-        public bool UpdateRecette(UpdateTempsForm updateTempsForm)
+        public bool UpdateTemps(UpdateTempsForm updateTempsForm)
         {
             Temps? t = _tempsRepository.GetTempsById(updateTempsForm.id_temps);
 

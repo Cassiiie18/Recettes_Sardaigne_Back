@@ -9,7 +9,7 @@ namespace DAL.Interfaces
 {
     public interface IRecetteRepository
     {
-        public Recette CreateRecette(Recette recette);
+        public Recette CreateRecette(Recette recette, Temps temps);
         public bool DeleteRecette(Recette recette);
         public bool UpdateRecette(Recette recette);
         public Recette GetRecetteById(int ind_recette);

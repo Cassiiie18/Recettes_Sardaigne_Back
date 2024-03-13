@@ -15,6 +15,10 @@ builder.Services.AddScoped<IRecetteRepository, RecetteRepository>(sp =>
 new RecetteRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
 builder.Services.AddScoped<RecetteService>();
 
+builder.Services.AddScoped<ITempsRepository, TempsRepository>(sp =>
+new TempsRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
+builder.Services.AddScoped<TempsService>();
+
 
 
 var app = builder.Build();
