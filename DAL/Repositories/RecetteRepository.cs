@@ -24,11 +24,12 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.id_recette VALUES (@nom, @nombre_personnes, @photo)";
+                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@nom, @nombre_personnes, @photo);";
 
-                    command.Parameters.AddWithValue("nom", recette.nom);
-                    command.Parameters.AddWithValue("nombre_personnes", recette.nombre_personnes);
-                    command.Parameters.AddWithValue("photo", recette.photo);
+
+                    command.Parameters.AddWithValue("Nom", recette.nom);
+                    command.Parameters.AddWithValue("Nombre_personnes", recette.nombre_personnes);
+                    command.Parameters.AddWithValue("Photo", recette.photo);
 
                     connection.Open();
 
@@ -123,7 +124,7 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Recette WHERE name = @name";
+                    command.CommandText = "SELECT * FROM Recette WHERE nom = @nom";
 
                     command.Parameters.AddWithValue("nom", nom);
 

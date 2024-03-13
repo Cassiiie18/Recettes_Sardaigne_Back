@@ -1,3 +1,7 @@
+using BLL.Services;
+using DAL.Interfaces;
+using DAL.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IRecetteRepository, RecetteRepository>(sp =>
+new RecetteRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
+builder.Services.AddScoped<RecetteService>();
+
+
 
 var app = builder.Build();
 
