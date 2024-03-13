@@ -19,13 +19,13 @@ namespace BLL.Services
             _recetteRepository = recetteRepository;
         }
 
-        public Recette? CreateRecette(RecetteForm recetteform)
+        public Recette? CreateRecette(RecetteForm recetteForm)
         {
-            Recette? r = _recetteRepository.GetRecetteByName(recetteform.nom);
+            Recette? r = _recetteRepository.GetRecetteByName(recetteForm.nom);
 
             if (r == null)
             {
-                Recette recette = recetteform.ToRecette();
+                Recette recette = recetteForm.ToRecette();
 
                 return recette = _recetteRepository.CreateRecette(recette);
             }
