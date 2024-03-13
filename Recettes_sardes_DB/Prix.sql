@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[Prix]
-(
-	[Id_prix] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	[Gamme_prix] VARCHAR(50) NOT NULL
-)

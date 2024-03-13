@@ -24,12 +24,15 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@nom, @nombre_personnes, @photo);";
+                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@nom, @nombre_personnes, @photo, @gamme_prix, @difficulte);";
 
 
                     command.Parameters.AddWithValue("Nom", recette.nom);
                     command.Parameters.AddWithValue("Nombre_personnes", recette.nombre_personnes);
                     command.Parameters.AddWithValue("Photo", recette.photo);
+                    command.Parameters.AddWithValue("Gamme_prix", recette.gamme_prix);
+                    command.Parameters.AddWithValue("Difficulte", recette.difficulte);
+                        
 
                     connection.Open();
 
@@ -150,11 +153,13 @@ namespace DAL.Repositories
             {
                 using(SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE Recette SET nom = @nom, nombre_personnes = @nombre_personnes, photo = @photo";
+                    command.CommandText = "UPDATE Recette SET nom = @nom, nombre_personnes = @nombre_personnes, photo = @photo, gamme_prix = @gamme_prix, difficulte = @difficulte;";
 
                     command.Parameters.AddWithValue("nom", recette.nom);
                     command.Parameters.AddWithValue("nombre_personnes", recette.nombre_personnes);
                     command.Parameters.AddWithValue("photo", recette.photo);
+                    command.Parameters.AddWithValue("Gamme_prix", recette.gamme_prix);
+                    command.Parameters.AddWithValue("Difficulte", recette.difficulte);
 
                     connection.Open();
 

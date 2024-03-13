@@ -13,6 +13,8 @@ namespace DAL.Entities
         public string nom;
         public int nombre_personnes;
         public string photo;
+        public string gamme_prix;
+        public string difficulte;
 
         public Recette(int id_recette, string nom, int nombre_personnes, string photo)
         {

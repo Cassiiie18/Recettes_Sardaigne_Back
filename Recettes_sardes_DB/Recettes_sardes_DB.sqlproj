@@ -60,8 +60,5 @@
   <ItemGroup>
     <Build Include="Recette.sql" />
     <Build Include="Temps.sql" />
-    <Build Include="Prix.sql" />
-    <Build Include="Difficulte.sql" />
-    <Build Include="Categorie.sql" />
   </ItemGroup>
 </Project>

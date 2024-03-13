@@ -18,5 +18,13 @@ namespace BLL.Forms
         [Required]
         public string photo {  get; set; }
 
+
+        [Required]
+        public string gamme_prix { get; set; }
+
+
+        [Required]
+        public string difficulte { get; set; }  
+
     }
 }

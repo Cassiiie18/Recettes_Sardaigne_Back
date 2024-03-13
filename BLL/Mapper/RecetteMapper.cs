@@ -16,7 +16,10 @@ namespace BLL.Mapper
             {
                 nom = recetteForm.nom,
                 nombre_personnes = recetteForm.nombre_personnes,
-                photo = recetteForm.photo
+                photo = recetteForm.photo,
+                gamme_prix = recetteForm.gamme_prix,
+                difficulte = recetteForm.difficulte,
+                
             };
         }
     }
