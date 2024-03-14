@@ -17,16 +17,16 @@ namespace Recettes_Sardaigne.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult CreateTemps(TempsForm tempsForm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            _tempsService.CreateTemps(tempsForm);
-            return Ok("Temps ajouté");
-        }
+        //[HttpPost]
+        //public IActionResult CreateTemps(TempsForm tempsForm)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    _tempsService.CreateTemps(tempsForm);
+        //    return Ok("Temps ajouté");
+        //}
 
 
         [HttpGet("{id_temps}")]

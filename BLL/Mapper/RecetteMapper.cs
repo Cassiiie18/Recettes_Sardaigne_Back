@@ -19,7 +19,7 @@ namespace BLL.Mapper
                 photo = recetteForm.photo,
                 gamme_prix = recetteForm.gamme_prix,
                 difficulte = recetteForm.difficulte,
-                temps = recetteForm.Chocapic,
+                temps = recetteForm.temps,
                 
             };
         }

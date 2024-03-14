@@ -21,11 +21,11 @@ namespace Recettes_Sardaigne.Controllers
         [HttpPost]
         public IActionResult CreateRecette (RecetteForm recetteForm)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            //_recetteService.CreateRecette(recetteForm, temps);
+            _recetteService.CreateRecette(recetteForm);
             return Ok("Recette créée");
         }
 

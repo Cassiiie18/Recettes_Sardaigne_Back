@@ -3,6 +3,7 @@ using DAL.Interfaces;
 using DAL.Mappers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -18,28 +19,44 @@ namespace DAL.Repositories
             _connectionString = connectionString;
         }
 
-        public Recette CreateRecette(Recette recette, Temps temps)
+        public Recette CreateRecette(Recette recette)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
 
+                    command.CommandText = "INSERT INTO Temps OUTPUT inserted.Id_temps VALUES (@Temps_cuisson, @Temps_preparation, @Temps_total);";
+
+                    command.Parameters.AddWithValue("Temps_cuisson", (recette.temps.temps_cuisson.Hour * 60 + recette.temps.temps_cuisson.Minute));
+                    command.Parameters.AddWithValue("Temps_preparation", (recette.temps.temps_preparation.Hour * 60 + recette.temps.temps_preparation.Minute));
+                    command.Parameters.AddWithValue("Temps_total", (recette.temps.temps_total.Hour * 60 + recette.temps.temps_total.Minute));
 
 
-                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@nom, @nombre_personnes, @photo, @gamme_prix, @difficulte, @id_temps);";
+                    connection.Open();
 
-                    command.Parameters.AddWithValue("id_temps", temps.id_temps);
+                    recette.temps.id_temps = Convert.ToInt32(command.ExecuteScalar());
+
+                    connection.Close();
+
+
+                    command.CommandText = "INSERT INTO Recette OUTPUT inserted.Id_recette VALUES (@Nom, @Nombre_personnes, @Photo, @Gamme_prix, @Difficulte, @Id_temps);";
+
+
                     command.Parameters.AddWithValue("Nom", recette.nom);
                     command.Parameters.AddWithValue("Nombre_personnes", recette.nombre_personnes);
                     command.Parameters.AddWithValue("Photo", recette.photo);
                     command.Parameters.AddWithValue("Gamme_prix", recette.gamme_prix);
                     command.Parameters.AddWithValue("Difficulte", recette.difficulte);
+                    command.Parameters.AddWithValue("Id_temps", recette.temps.id_temps);
+
 
 
                     connection.Open();
 
                     recette.id_recette = Convert.ToInt32(command.ExecuteScalar());
+
+                 
 
                     connection.Close();
 
@@ -76,8 +93,10 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Recette";
+                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps";
 
+                    //command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps";
+                    
                     connection.Open();
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -91,6 +110,7 @@ namespace DAL.Repositories
 
                     connection.Close();
 
+
                     return recettes;
                 }
             }
@@ -102,7 +122,10 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Recette WHERE id_recette = @id_recette";
+                    //command.CommandText = "SELECT * FROM Recette WHERE id_recette = @id_recette";
+
+                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps WHERE id_temps = id_temps";
+
 
                     command.Parameters.AddWithValue("id_recette", id_recette);
 
@@ -130,9 +153,12 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Recette WHERE nom = @nom";
+                    //command.CommandText = "SELECT * FROM Recette WHERE nom = @nom";
 
-                    command.Parameters.AddWithValue("nom", nom);
+                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps WHERE Nom = Nom";
+
+
+                    command.Parameters.AddWithValue("Nom", nom);
 
                     connection.Open();
 

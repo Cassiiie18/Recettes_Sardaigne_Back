@@ -27,7 +27,8 @@ namespace BLL.Forms
         [Required]
         public string difficulte { get; set; }
 
-        public Temps Chocapic { get; set; }
+        [Required]
+        public Temps temps { get; set; }
 
     }
 }

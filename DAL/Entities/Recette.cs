@@ -17,12 +17,13 @@ namespace DAL.Entities
         public string difficulte;
         public Temps temps; 
 
-        public Recette(int id_recette, string nom, int nombre_personnes, string photo)
+        public Recette(int id_recette, string nom, int nombre_personnes, string photo, Temps temps)
         {
             this.id_recette = id_recette;
             this.nom = nom;
             this.nombre_personnes = nombre_personnes;
             this.photo = photo;
+            this.temps = temps;
         }
 
         public Recette() { }

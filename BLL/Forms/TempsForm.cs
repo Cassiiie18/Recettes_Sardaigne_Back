@@ -10,12 +10,12 @@ namespace BLL.Forms
     public class TempsForm
     {
         
-        public TimeSpan temps_cuisson;
+        public TimeOnly temps_cuisson;
 
         [Required]
-        public TimeSpan temps_preparation;
+        public TimeOnly temps_preparation;
 
         [Required]
-        public TimeSpan temps_total;
+        public TimeOnly temps_total;
     }
 }

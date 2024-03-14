@@ -15,9 +15,9 @@ namespace DAL.Mappers
             return new Temps()
             {
                 id_temps = (int)(reader["id_temps"]),
-                temps_cuisson = (TimeSpan)(reader["temps_cuisson"]), 
-                temps_preparation = (TimeSpan)(reader["temps_preparation"]),
-                temps_total = (TimeSpan)(reader["temps_total"]),
+                temps_cuisson = (TimeOnlyPerso)( reader["temps_cuisson"]), 
+                temps_preparation = (TimeOnlyPerso)(reader["temps_preparation"]),
+                temps_total = (TimeOnlyPerso)(reader["temps_total"]),
             };
         }
 

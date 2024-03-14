@@ -21,16 +21,16 @@ namespace BLL.Services
             _tempsRepository = tempsRepository;
         }
 
-        public Recette? CreateRecette(RecetteForm recetteForm, Temps temps)
+        public Recette? CreateRecette(RecetteForm recetteForm)
         {
             Recette? r = _recetteRepository.GetRecetteByName(recetteForm.nom);
-            Temps? t = _tempsRepository.GetTempsById(temps.id_temps);
+            //Temps? t = _tempsRepository.GetTempsById(temps.id_temps);
 
-            if (r == null && t != null)
+            if (r == null)
             {
                 Recette recette = recetteForm.ToRecette();
 
-                return recette = _recetteRepository.CreateRecette(recette, temps);
+                return recette = _recetteRepository.CreateRecette(recette);
             }
 
             return null;
