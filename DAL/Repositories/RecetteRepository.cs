@@ -93,9 +93,8 @@ namespace DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps";
-
                     //command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps";
+                    command.CommandText = "SELECT * FROM Recette FULL JOIN Temps ON Recette.id_temps = Temps.id_temps;";
                     
                     connection.Open();
 
@@ -124,10 +123,10 @@ namespace DAL.Repositories
                 {
                     //command.CommandText = "SELECT * FROM Recette WHERE id_recette = @id_recette";
 
-                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps WHERE id_temps = id_temps";
+                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps WHERE Recette.Id_recette = @Id_recette";
 
 
-                    command.Parameters.AddWithValue("id_recette", id_recette);
+                    command.Parameters.AddWithValue("Id_recette", id_recette);
 
                     connection.Open();
 

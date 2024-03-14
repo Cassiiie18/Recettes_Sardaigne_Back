@@ -39,10 +39,12 @@ namespace Recettes_Sardaigne.Controllers
         [HttpGet("{id_recette}")]
         public IActionResult GetRecetteById(int id_recette)
         {
-            return Ok(_recetteService.GetRecetteById(id_recette));
+            var tutu = _recetteService.GetRecetteById(id_recette);
+
+            return Ok(tutu);
         }
 
-        [HttpGet("{nom}")]
+        [HttpGet("/nom/{nom}")]
         public IActionResult GetRecetteByName(string nom)
         {
             return Ok(_recetteService.GetRecetteByName(nom));
