@@ -17,103 +17,108 @@ namespace DAL.Repositories
         {
             _connectionString = connectionString;
         }
+        #region Autres
 
-        public Temps CreateTemps(Temps temps)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "INSERT INTO Temps OUTPUT inserted.Id_temps VALUES (@temps_cuisson, @temps_preparation, @temps_total);";
+        //public Temps CreateTemps(Temps temps)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "INSERT INTO Temps OUTPUT inserted.Id_temps VALUES (@temps_cuisson, @temps_preparation, @temps_total);";
 
 
-                    command.Parameters.AddWithValue("temps_cuisson", temps.temps_cuisson);
-                    command.Parameters.AddWithValue("temps_preparation", temps.temps_preparation);
-                    command.Parameters.AddWithValue("temps_total", temps.temps_total);
+        //            command.Parameters.AddWithValue("temps_cuisson", temps.temps_cuisson);
+        //            command.Parameters.AddWithValue("temps_preparation", temps.temps_preparation);
+        //            command.Parameters.AddWithValue("temps_total", temps.temps_total);
 
-                    connection.Open();
+        //            connection.Open();
 
-                    temps.id_temps = Convert.ToInt32(command.ExecuteScalar());
+        //            temps.id_temps = Convert.ToInt32(command.ExecuteScalar());
 
-                    connection.Close();
+        //            connection.Close();
 
-                    return temps;
-                }
-            }
-        }
+        //            return temps;
+        //        }
+        //    }
+        //}
 
-        public bool DeleteTemps(Temps temps)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "DELETE * FROM Temps WHERE id_temps = @id_temps";
+        //public bool DeleteTemps(Temps temps)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "DELETE * FROM Temps WHERE id_temps = @id_temps";
 
-                    command.Parameters.AddWithValue("id_temps", temps.id_temps);
+        //            command.Parameters.AddWithValue("id_temps", temps.id_temps);
 
-                    connection.Open();
+        //            connection.Open();
 
-                    int rowAffected = command.ExecuteNonQuery();
+        //            int rowAffected = command.ExecuteNonQuery();
 
-                    connection.Close();
+        //            connection.Close();
 
-                    return rowAffected == 1;
+        //            return rowAffected == 1;
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
-        public Temps GetTempsById(int id_temps)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "SELECT * FROM Temps WHERE id_temps = @id_temps";
+        //public Temps GetTempsById(int id_temps)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "SELECT * FROM Temps WHERE id_temps = @id_temps";
 
-                    command.Parameters.AddWithValue("id_temps", id_temps);
+        //            command.Parameters.AddWithValue("id_temps", id_temps);
 
-                    connection.Open();
+        //            connection.Open();
 
-                    SqlDataReader reader = command.ExecuteReader();
+        //            SqlDataReader reader = command.ExecuteReader();
 
-                    Temps? t = null;
+        //            Temps? t = null;
 
-                    while (reader.Read())
-                    {
-                        t = reader.ToTemps();  
-                    }
+        //            while (reader.Read())
+        //            {
+        //                t = reader.ToTemps();
+        //            }
 
-                    connection.Close();
+        //            connection.Close();
 
-                    return t;
-                }
-            }
-        }
+        //            return t;
+        //        }
+        //    }
+        //}
 
-        public bool UpdateTemps(Temps temps)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "UPDATE Temps SET temps_cuisson = @temps_cuisson, temps_preparation = @temps_preparation, temps_total = @temps_total";
+        //public bool UpdateTemps(Temps temps)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "UPDATE Temps SET temps_cuisson = @temps_cuisson, temps_preparation = @temps_preparation, temps_total = @temps_total";
 
-                    command.Parameters.AddWithValue("temps_cuisson", temps.temps_cuisson);
-                    command.Parameters.AddWithValue("temps_preparation", temps.temps_preparation);
-                    command.Parameters.AddWithValue("temps_total", temps.temps_total);
+        //            command.Parameters.AddWithValue("temps_cuisson", temps.temps_cuisson);
+        //            command.Parameters.AddWithValue("temps_preparation", temps.temps_preparation);
+        //            command.Parameters.AddWithValue("temps_total", temps.temps_total);
 
-                    connection.Open();
+        //            connection.Open();
 
-                    int rowAffected = command.ExecuteNonQuery();
+        //            int rowAffected = command.ExecuteNonQuery();
 
-                    connection.Close();
+        //            connection.Close();
 
-                    return rowAffected == 1;
-                }
-            }
-        }
+        //            return rowAffected == 1;
+        //        }
+        //    }
+        //}
+
+
+        #endregion
+
     }
 }
 

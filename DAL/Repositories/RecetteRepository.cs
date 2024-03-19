@@ -14,10 +14,20 @@ namespace DAL.Repositories
     public class RecetteRepository : IRecetteRepository
     {
         private readonly string _connectionString;
-        public RecetteRepository(string connectionString)
+        public RecetteRepository(string connectionString) 
         {
             _connectionString = connectionString;
         }
+
+        #region Autres
+
+
+
+
+
+
+
+        #endregion
 
         public Recette CreateRecette(Recette recette)
         {
@@ -26,11 +36,19 @@ namespace DAL.Repositories
                 using (SqlCommand command = connection.CreateCommand())
                 {
 
-                    command.CommandText = "INSERT INTO Temps OUTPUT inserted.Id_temps VALUES (@Temps_cuisson, @Temps_preparation, @Temps_total);";
+                    //command.CommandText = "INSERT INTO Temps OUTPUT inserted.Id_temps VALUES (@Temps_cuisson, @Temps_preparation, @Temps_total);";
 
-                    command.Parameters.AddWithValue("Temps_cuisson", (recette.temps.temps_cuisson.Hour * 60 + recette.temps.temps_cuisson.Minute));
-                    command.Parameters.AddWithValue("Temps_preparation", (recette.temps.temps_preparation.Hour * 60 + recette.temps.temps_preparation.Minute));
-                    command.Parameters.AddWithValue("Temps_total", (recette.temps.temps_total.Hour * 60 + recette.temps.temps_total.Minute));
+                    //command.Parameters.AddWithValue("Temps_cuisson", (recette.temps.temps_cuisson_.Hour * 60 + recette.temps.temps_cuisson.Minute));
+                    //command.Parameters.AddWithValue("Temps_preparation", (recette.temps.temps_preparation.Hour * 60 + recette.temps.temps_preparation.Minute));
+                    //command.Parameters.AddWithValue("Temps_total", (recette.temps.temps_total.Hour * 60 + recette.temps.temps_total.Minute));
+
+
+                    command.CommandText = "INSERT INTO Temps OUTPUT inserted.Id_temps VALUES (@Temps_cuisson_minutes, @Temps_preparation_minutes, @Temps_total_minutes);";
+
+                    command.Parameters.AddWithValue("Temps_cuisson_minutes", recette.temps.temps_cuisson_minutes);
+                    command.Parameters.AddWithValue("Temps_preparation_minutes", recette.temps.temps_preparation_minutes);
+                    command.Parameters.AddWithValue("Temps_total_minutes", recette.temps.temps_total_minutes);
+
 
 
                     connection.Open();
@@ -65,90 +83,129 @@ namespace DAL.Repositories
             }
         }
 
-        public bool DeleteRecette(Recette recette)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "DELETE * FROM Recette WHERE id_recette = @id_recette";
-
-                    command.Parameters.AddWithValue("id_recette", recette.id_recette);
-
-                    connection.Open();
-
-                    int rowAffected = command.ExecuteNonQuery();
-
-                    connection.Close();
-
-                    return rowAffected == 1; 
-
-                }
-            }
-        }
-
-        public IEnumerable<Recette> GetAllRecettes()
-        {
-            using(SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    //command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps";
-                    command.CommandText = "SELECT * FROM Recette FULL JOIN Temps ON Recette.id_temps = Temps.id_temps;";
-                    
-                    connection.Open();
-
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    List<Recette> recettes = new List<Recette>();
-
-                    while (reader.Read())
-                    {
-                        recettes.Add(reader.ToRecette());
-                    }
-
-                    connection.Close();
 
 
-                    return recettes;
-                }
-            }
-        }
+        #region Autres
 
-        public Recette GetRecetteById(int id_recette)
-        {
-            using(SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    //command.CommandText = "SELECT * FROM Recette WHERE id_recette = @id_recette";
+        //public bool DeleteRecette(Recette recette)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "DELETE * FROM Recette WHERE id_recette = @id_recette";
 
-                    command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps WHERE Recette.Id_recette = @Id_recette";
+        //            command.Parameters.AddWithValue("id_recette", recette.id_recette);
+
+        //            connection.Open();
+
+        //            int rowAffected = command.ExecuteNonQuery();
+
+        //            connection.Close();
+
+        //            return rowAffected == 1;
+
+        //        }
+        //    }
+        //}
+
+        //public IEnumerable<Recette> GetAllRecettes()
+        //{
+        //    using(SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            //command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps";
+        //            command.CommandText = "SELECT * FROM Recette";
+
+        //            connection.Open();
+
+        //            SqlDataReader reader = command.ExecuteReader();
+
+        //            List<Recette> recettes = new List<Recette>();
+
+        //            while (reader.Read())
+        //            {
+        //                recettes.Add(reader.ToRecette());
+        //            }
+
+        //            connection.Close();
 
 
-                    command.Parameters.AddWithValue("Id_recette", id_recette);
+        //            return recettes;
+        //        }
+        //    }
+        //}
 
-                    connection.Open();
+        //public Recette GetRecetteById(int id_recette)
+        //{
+        //    using(SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
 
-                    SqlDataReader reader = command.ExecuteReader();
 
-                    Recette? r = null;
+        //            command.CommandText = "SELECT * FROM Recette JOIN Temps ON Recette.Id_temps = Temps.Id_temps WHERE Recette.Id_recette = @Id_recette";
 
-                    while (reader.Read())
-                    {
-                        r = reader.ToRecette();
-                    }
+        //            command.Parameters.AddWithValue("Id_recette", id_recette);
 
-                    connection.Close();
 
-                    return r;
-                }
-            }
-        }
+        //            connection.Open();
+
+        //            SqlDataReader reader = command.ExecuteReader();
+
+
+        //            RecetteTemps rt = null;
+
+
+        //            while (reader.Read())
+        //            {
+        //                rt = reader.ToRecetteTemps();
+
+
+        //            }
+
+        //            connection.Close();
+
+        //            return rt;
+
+        //        }
+        //    }
+        //}
+
+        //public bool UpdateRecette(Recette recette)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
+        //            command.CommandText = "UPDATE Recette SET nom = @nom, nombre_personnes = @nombre_personnes, photo = @photo, gamme_prix = @gamme_prix, difficulte = @difficulte;";
+
+        //            command.Parameters.AddWithValue("nom", recette.nom);
+        //            command.Parameters.AddWithValue("nombre_personnes", recette.nombre_personnes);
+        //            command.Parameters.AddWithValue("photo", recette.photo);
+        //            command.Parameters.AddWithValue("Gamme_prix", recette.gamme_prix);
+        //            command.Parameters.AddWithValue("Difficulte", recette.difficulte);
+
+        //            connection.Open();
+
+        //            int rowAffected = command.ExecuteNonQuery();
+
+        //            connection.Close();
+
+        //            return rowAffected == 1;
+        //        }
+        //    }
+        //}
+
+
+
+        #endregion
+
 
         public Recette GetRecetteByName(string nom)
         {
-            using(SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -175,29 +232,6 @@ namespace DAL.Repositories
             }
         }
 
-        public bool UpdateRecette(Recette recette)
-        {
-            using(SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using(SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = "UPDATE Recette SET nom = @nom, nombre_personnes = @nombre_personnes, photo = @photo, gamme_prix = @gamme_prix, difficulte = @difficulte;";
-
-                    command.Parameters.AddWithValue("nom", recette.nom);
-                    command.Parameters.AddWithValue("nombre_personnes", recette.nombre_personnes);
-                    command.Parameters.AddWithValue("photo", recette.photo);
-                    command.Parameters.AddWithValue("Gamme_prix", recette.gamme_prix);
-                    command.Parameters.AddWithValue("Difficulte", recette.difficulte);
-
-                    connection.Open();
-
-                    int rowAffected = command.ExecuteNonQuery();
-
-                    connection.Close();
-
-                    return rowAffected == 1; 
-                }
-            }
-        }
+       
     }
 }

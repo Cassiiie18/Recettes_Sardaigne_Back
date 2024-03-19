@@ -20,41 +20,41 @@ namespace BLL.Services
             _tempsRepository = tempsRepository;
         }
 
-        public Temps? CreateTemps(TempsForm tempsForm)
-        {
+        //public Temps? CreateTemps(TempsForm tempsForm)
+        //{
            
-                Temps temps = tempsForm.ToTemps();
+        //        Temps temps = tempsForm.ToTemps();
 
-                return temps = _tempsRepository.CreateTemps(temps);
+        //        return temps = _tempsRepository.CreateTemps(temps);
             
-        }
+        //}
 
-        public bool DeleteTemps(int id_temps)
-        {
-            Temps? t = _tempsRepository.GetTempsById(id_temps);
+        //public bool DeleteTemps(int id_temps)
+        //{
+        //    Temps? t = _tempsRepository.GetTempsById(id_temps);
 
-            if (t is not null)
-            {
-                return _tempsRepository.DeleteTemps(t);
-            }
+        //    if (t is not null)
+        //    {
+        //        return _tempsRepository.DeleteTemps(t);
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        public Temps GetTempsById(int id_temps)
-        {
-            return _tempsRepository.GetTempsById(id_temps);
-        }
+        //public Temps GetTempsById(int id_temps)
+        //{
+        //    return _tempsRepository.GetTempsById(id_temps);
+        //}
 
-        public bool UpdateTemps(UpdateTempsForm updateTempsForm)
-        {
-            Temps? t = _tempsRepository.GetTempsById(updateTempsForm.id_temps);
+        //public bool UpdateTemps(UpdateTempsForm updateTempsForm)
+        //{
+        //    Temps? t = _tempsRepository.GetTempsById(updateTempsForm.id_temps);
 
-            if (t != null)
-            {
-                return _tempsRepository.UpdateTemps(t);
-            }
-            return false;
-        }
+        //    if (t != null)
+        //    {
+        //        return _tempsRepository.UpdateTemps(t);
+        //    }
+        //    return false;
+        //}
     }
 }

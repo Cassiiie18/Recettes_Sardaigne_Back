@@ -29,28 +29,28 @@ namespace Recettes_Sardaigne.Controllers
         //}
 
 
-        [HttpGet("{id_temps}")]
-        public IActionResult GetTempsById(int id_temps)
-        {
-            return Ok(_tempsService.GetTempsById(id_temps));
-        }
+        //[HttpGet("{id_temps}")]
+        //public IActionResult GetTempsById(int id_temps)
+        //{
+        //    return Ok(_tempsService.GetTempsById(id_temps));
+        //}
 
 
-        [HttpDelete("{id_temps}")]
-        public IActionResult DeleteRecette(int id_temps)
-        {
-            _tempsService.DeleteTemps(id_temps);
-            return Ok();
-        }
+        //[HttpDelete("{id_temps}")]
+        //public IActionResult DeleteRecette(int id_temps)
+        //{
+        //    _tempsService.DeleteTemps(id_temps);
+        //    return Ok();
+        //}
 
-        [HttpPatch]
-        public IActionResult UpdateTemps(int id_temps, UpdateTempsForm updateTempsForm)
-        {
-            if (!ModelState.IsValid) return BadRequest();
+        //[HttpPatch]
+        //public IActionResult UpdateTemps(int id_temps, UpdateTempsForm updateTempsForm)
+        //{
+        //    if (!ModelState.IsValid) return BadRequest();
 
-            updateTempsForm.id_temps = id_temps;
-            _tempsService.UpdateTemps(updateTempsForm);
-            return Ok("Mise à jour effectuée");
-        }
+        //    updateTempsForm.id_temps = id_temps;
+        //    _tempsService.UpdateTemps(updateTempsForm);
+        //    return Ok("Mise à jour effectuée");
+        //}
     }
 }

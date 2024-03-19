@@ -3,6 +3,8 @@ using BLL.Services;
 using DAL.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Recettes_Sardaigne.Controllers
 {
@@ -19,7 +21,7 @@ namespace Recettes_Sardaigne.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateRecette (RecetteForm recetteForm)
+        public IActionResult CreateRecette(RecetteForm recetteForm)
         {
             if (!ModelState.IsValid)
             {
@@ -30,41 +32,53 @@ namespace Recettes_Sardaigne.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult GetAllRecettes()
-        {
-            return Ok(_recetteService.GetAllRecettes());
-        }
 
-        [HttpGet("{id_recette}")]
-        public IActionResult GetRecetteById(int id_recette)
-        {
-            var tutu = _recetteService.GetRecetteById(id_recette);
+        #region Autres
 
-            return Ok(tutu);
-        }
 
-        [HttpGet("/nom/{nom}")]
-        public IActionResult GetRecetteByName(string nom)
-        {
-            return Ok(_recetteService.GetRecetteByName(nom));
-        }
+        //[HttpGet]
+        //public IActionResult GetAllRecettes()
+        //{
 
-        [HttpDelete("{id_recette}")]
-        public IActionResult DeleteRecette(int id_recette)
-        {
-            _recetteService.DeleteRecette(id_recette);
-            return Ok();
-        }
+        //    List<Recette> recettes = _recetteService.GetAllRecettes().ToList();
+        //    return Ok(recettes);
+        //}
 
-        [HttpPatch]
-        public IActionResult UpdateRecette(string nom, UpdateRecetteForm updateRecetteForm)
-        {
-            if(!ModelState.IsValid) return BadRequest();
+        //[HttpGet("{id_recette}")]
+        //public IActionResult GetRecetteById(int id_recette)
+        //{
+        //    var tutu = _recetteService.GetRecetteById(id_recette);
 
-            updateRecetteForm.nom = nom;
-            _recetteService.UpdateRecette(updateRecetteForm);
-            return Ok("Mise à jour effectuée");
-        }
+        //    return Ok(tutu);
+        //}
+
+        //[HttpDelete("{id_recette}")]
+        //public IActionResult DeleteRecette(int id_recette)
+        //{
+        //    _recetteService.DeleteRecette(id_recette);
+        //    return Ok();
+        //}
+
+        //[HttpPatch]
+        //public IActionResult UpdateRecette(string nom, UpdateRecetteForm updateRecetteForm)
+        //{
+        //    if (!ModelState.IsValid) return BadRequest();
+
+        //    updateRecetteForm.nom = nom;
+        //    _recetteService.UpdateRecette(updateRecetteForm);
+        //    return Ok("Mise à jour effectuée");
+        //}
+
+        #endregion
+
+
+
+        //[HttpGet("/nom/{nom}")]
+        //public IActionResult GetRecetteByName(string nom)
+        //{
+        //    return Ok(_recetteService.GetRecetteByName(nom));
+        //}
+
+
     }
 }

@@ -26,7 +26,7 @@ namespace BLL.Services
             Recette? r = _recetteRepository.GetRecetteByName(recetteForm.nom);
             //Temps? t = _tempsRepository.GetTempsById(temps.id_temps);
 
-            if (r == null)
+            if (r != null)
             {
                 Recette recette = recetteForm.ToRecette();
 
@@ -36,42 +36,51 @@ namespace BLL.Services
             return null;
         }
 
-        public bool DeleteRecette(int id_recette)
-        {
-            Recette? r = _recetteRepository.GetRecetteById(id_recette);
+        #region Autres
 
-            if(r is not null)
-            {
-                return _recetteRepository.DeleteRecette(r);
-            }
+        //public bool DeleteRecette(int id_recette)
+        //{
+        //    Recette? r = _recetteRepository.GetRecetteById(id_recette);
 
-            return false; 
-        }
+        //    if(r is not null)
+        //    {
+        //        return _recetteRepository.DeleteRecette(r);
+        //    }
 
-        public IEnumerable<Recette> GetAllRecettes()
-        {
-            return _recetteRepository.GetAllRecettes();
-        }
+        //    return false; 
+        //}
 
-        public Recette GetRecetteById(int id_recette)
-        {
-            return _recetteRepository.GetRecetteById(id_recette);
-        }
+        //public IEnumerable<Recette> GetAllRecettes()
+        //{
+        //    return _recetteRepository.GetAllRecettes();
+        //}
+
+        //public Recette GetRecetteById(int id_recette)
+        //{
+        //    return _recetteRepository.GetRecetteById(id_recette);
+        //}
+
+        //public bool UpdateRecette(UpdateRecetteForm updateRecetteForm)
+        //{
+        //    Recette? r = _recetteRepository.GetRecetteByName(updateRecetteForm.nom);
+
+        //    if( r != null)
+        //    {
+        //        return _recetteRepository.UpdateRecette(r);
+        //    }
+        //    return false;
+        //}
+
+
+        #endregion
+
+
 
         public Recette GetRecetteByName(string nom)
         {
             return _recetteRepository.GetRecetteByName(nom);
         }
 
-        public bool UpdateRecette(UpdateRecetteForm updateRecetteForm)
-        {
-            Recette? r = _recetteRepository.GetRecetteByName(updateRecetteForm.nom);
 
-            if( r != null)
-            {
-                return _recetteRepository.UpdateRecette(r);
-            }
-            return false;
-        }
     }
 }
