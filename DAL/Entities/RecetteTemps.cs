@@ -26,3 +26,4 @@ namespace DAL.Entities
         public int temps_total_minutes { get; set; }
     }
 }
+

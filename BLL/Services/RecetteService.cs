@@ -24,7 +24,7 @@ namespace BLL.Services
         public Recette? CreateRecette(RecetteForm recetteForm)
         {
             Recette? r = _recetteRepository.GetRecetteByName(recetteForm.nom);
-            //Temps? t = _tempsRepository.GetTempsById(temps.id_temps);
+            
 
             if (r != null)
             {

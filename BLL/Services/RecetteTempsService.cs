@@ -1,5 +1,4 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
+﻿using DAL.Interfaces;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;

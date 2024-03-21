@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿
 
 namespace DAL.Entities
 {
     public class Temps
     {
-        [JsonIgnore]
-        public int id_temps {  get; set; }
+        //[JsonIgnore]
+        public int id_temps { get; set; }
 
         public int temps_cuisson_minutes { get; set; }
         public int temps_preparation_minutes { get; set; }
@@ -52,3 +46,4 @@ namespace DAL.Entities
     //    }
     //}
 }
+

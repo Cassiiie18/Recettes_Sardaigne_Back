@@ -13,10 +13,11 @@ namespace Recettes_Sardaigne.Controllers
     public class RecetteController : ControllerBase
     {
         private readonly RecetteService _recetteService;
-
+        
         public RecetteController(RecetteService recetteService)
         {
             _recetteService = recetteService;
+            
         }
 
 
@@ -28,7 +29,10 @@ namespace Recettes_Sardaigne.Controllers
                 return BadRequest();
             }
             _recetteService.CreateRecette(recetteForm);
+
             return Ok("Recette créée");
+
+            
         }
 
 

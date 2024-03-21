@@ -23,6 +23,15 @@ builder.Services.AddScoped<IRecetteTempsRepository, RecetteTempsRepository>(sp =
 new RecetteTempsRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
 builder.Services.AddScoped<RecetteTempsService>();
 
+builder.Services.AddScoped<IEtapesRepository, EtapesRepository>(sp =>
+new EtapesRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
+builder.Services.AddScoped<EtapesService>();
+
+builder.Services.AddScoped<IEtapesRecetteRepository, EtapesRecetteRepository>(sp =>
+new EtapesRecetteRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
+builder.Services.AddScoped<EtapesRecetteService>();
+
+
 
 
 var app = builder.Build();

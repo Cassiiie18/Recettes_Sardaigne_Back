@@ -1,12 +1,4 @@
-﻿using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DAL.Mappers
+﻿namespace DAL.Mappers
 {
     public static class RecetteTempsMapper
     {

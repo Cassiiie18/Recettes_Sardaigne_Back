@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Etapes]
+(
+	[Id_etapes] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Etapes] VARCHAR(MAX) NOT NULL, 
+)

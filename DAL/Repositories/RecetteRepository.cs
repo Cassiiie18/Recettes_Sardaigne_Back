@@ -1,13 +1,4 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
-using DAL.Mappers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace DAL.Repositories
 {

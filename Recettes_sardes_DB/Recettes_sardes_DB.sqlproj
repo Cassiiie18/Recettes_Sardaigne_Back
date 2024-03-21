@@ -60,5 +60,25 @@
   <ItemGroup>
     <Build Include="Recette.sql" />
     <Build Include="Temps.sql" />
+    <Build Include="Note.sql" />
+    <Build Include="NoteRecette.sql" />
+    <Build Include="Users.sql" />
+    <Build Include="UserRecette.sql" />
+    <Build Include="Etapes.sql" />
+    <Build Include="EtapesRecette.sql" />
+    <Build Include="Ustensiles.sql" />
+    <Build Include="Categorie.sql" />
+    <Build Include="Ingredients.sql" />
+    <Build Include="Commentaire.sql" />
+    <Build Include="Favoris.sql" />
+    <Build Include="CommentaireRecette.sql" />
+    <Build Include="UstensilesRecette.sql" />
+    <Build Include="IngredientsRecette.sql" />
+    <Build Include="CategorieRecette.sql" />
+    <Build Include="FavorisRecette.sql" />
+    <Build Include="UserFavoris.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Recettes_sardes_DB.refactorlog" />
   </ItemGroup>
 </Project>

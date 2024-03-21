@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Note]
+(
+	[Id_note] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+	[Note] INT NULL
+)
