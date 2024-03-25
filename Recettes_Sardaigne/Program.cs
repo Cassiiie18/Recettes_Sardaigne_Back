@@ -31,6 +31,10 @@ builder.Services.AddScoped<IEtapesRecetteRepository, EtapesRecetteRepository>(sp
 new EtapesRecetteRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
 builder.Services.AddScoped<EtapesRecetteService>();
 
+builder.Services.AddScoped<ICategorieRepository, CategorieRepository>(sp =>
+new CategorieRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
+builder.Services.AddScoped<CategorieService>();
+
 
 
 

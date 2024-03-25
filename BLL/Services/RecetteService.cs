@@ -26,7 +26,7 @@ namespace BLL.Services
             Recette? r = _recetteRepository.GetRecetteByName(recetteForm.nom);
             
 
-            if (r != null)
+            if (r == null)
             {
                 Recette recette = recetteForm.ToRecette();
 

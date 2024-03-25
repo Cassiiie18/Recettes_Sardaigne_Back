@@ -7,10 +7,9 @@ namespace DAL.Entities
         public int Id_recette { get; set; }
         public int Id_etapes { get; set; }
 
-        public string Description { get; set; }
-        public Recette Recette { get; set; }
+        public Recette? recette { get; set; }
 
-        public Etapes Etapes { get; set; }
+        public Etapes? etapes { get; set; }
 
     }
 }

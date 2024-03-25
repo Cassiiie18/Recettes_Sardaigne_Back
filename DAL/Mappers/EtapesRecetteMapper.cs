@@ -13,8 +13,10 @@ namespace DAL.Mappers
             return new EtapesRecette
             {
                 Id_etapes = (int)(reader["id_etapes"]),
-                Description= (string)(reader["Description"]),
+                recette = (Recette)(reader["recette"]),
+                etapes = (Etapes)(reader["etapes"]),
                 Id_recette = (int)(reader["id_recette"]),
+                
             };
         }
     }

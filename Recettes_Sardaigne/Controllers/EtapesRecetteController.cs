@@ -27,7 +27,7 @@ namespace Recettes_Sardaigne.Controllers
             return Ok(etapesRecette);
         }
 
-        [HttpGet("{id_recette}, {id_etapes} ")]
+        [HttpGet("{id_recette}, {id_etapes}")]
         public IActionResult GetEtapesRecetteById(int id_recette, int id_etapes)
         {
             var etapesR = _etapesRecetteService.GetEtapesRecetteById(id_recette, id_etapes);

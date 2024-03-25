@@ -1,5 +1,8 @@
 ﻿
 
+using DAL.Entities;
+using System.Collections.Generic;
+
 namespace DAL.Repositories
 {
     public class EtapesRepository : IEtapesRepository
@@ -10,6 +13,7 @@ namespace DAL.Repositories
             _connectionString = connectionString;
         }
 
+        #region Create
         public Etapes CreateEtapes(Etapes etapes)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -19,16 +23,12 @@ namespace DAL.Repositories
 
                     command.CommandText = "INSERT INTO Etapes OUTPUT inserted.Id_etapes VALUES (@Description);";
 
-
                     command.Parameters.AddWithValue("Description", etapes.Description);
 
 
                     connection.Open();
 
-                    //etapes.Id_etapes = Convert.ToInt32(command.ExecuteScalar());
-                    command.ExecuteNonQuery();
-
-
+                    etapes.Id_etapes = Convert.ToInt32(command.ExecuteScalar());
 
                     connection.Close();
 
@@ -36,7 +36,9 @@ namespace DAL.Repositories
                 }
             }
         }
+        #endregion
 
+        #region Delete
         public bool DeleteEtapes(Etapes etapes)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -45,7 +47,7 @@ namespace DAL.Repositories
                 {
                     command.CommandText = "DELETE * FROM Etapes WHERE Id_etapes = @Id_etapes";
 
-                    command.Parameters.AddWithValue("Id_etapes", etapes.Id_etapes) ;
+                    command.Parameters.AddWithValue("Id_etapes", etapes.Id_etapes);
 
                     connection.Open();
 
@@ -58,16 +60,18 @@ namespace DAL.Repositories
                 }
             }
         }
+        #endregion
 
 
 
+        #region GetAll
         public List<Etapes> GetAllEtapes()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    
+
                     command.CommandText = "SELECT * FROM Etapes";
 
                     connection.Open();
@@ -83,10 +87,10 @@ namespace DAL.Repositories
 
                     connection.Close();
 
-
                     return etapes;
                 }
             }
-        }
+        } 
+        #endregion
     }
 }
