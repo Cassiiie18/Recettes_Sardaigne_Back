@@ -14,40 +14,40 @@ namespace DAL.Repositories
             _connectionString = connectionString;
         }
 
-        public CategorieRecette GetCategorieRecetteById(int id_recette)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                using (SqlCommand command = connection.CreateCommand())
-                {
+        //public CategorieRecette GetCategorieRecetteById(int id_recette)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        using (SqlCommand command = connection.CreateCommand())
+        //        {
 
 
-                    command.CommandText = "SELECT * FROM Categorie WHERE Id = @id_recette";
+        //            command.CommandText = "SELECT * FROM Categorie WHERE Id = @id_recette";
 
-                    command.Parameters.AddWithValue("Id", id_recette);
-
-
-                    connection.Open();
-
-                    SqlDataReader reader = command.ExecuteReader();
+        //            command.Parameters.AddWithValue("Id", id_recette);
 
 
-                    CategorieRecette cr = null;
+        //            connection.Open();
+
+        //            SqlDataReader reader = command.ExecuteReader();
 
 
-                    while (reader.Read())
-                    {
-                        cr = reader.To();
+        //            CategorieRecette cr = null;
 
 
-                    }
+        //            while (reader.Read())
+        //            {
+        //                cr = reader.To();
 
-                    connection.Close();
 
-                    return rt;
+        //            }
 
-                }
-            }
-        }
+        //            connection.Close();
+
+        //            return rt;
+
+        //        }
+        //    }
+        //}
     }
 }

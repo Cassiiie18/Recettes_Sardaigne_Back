@@ -21,20 +21,20 @@ namespace BLL.Services
 
 
 
-        public IEnumerable<EtapesRecette> GetAllEtapesRecettes()
-        {
-            return _etapesRecetteRepository.GetAllEtapesRecettes();
-        }
+        //public IEnumerable<EtapesRecette> GetAllEtapesRecettes()
+        //{
+        //    return _etapesRecetteRepository.GetAllEtapesRecettes();
+        //}
 
         //public bool DeleteEtapesRecette(int id_recette, int id_etapes)
         //{
 
         //}
 
-        public EtapesRecette GetEtapesRecetteById(int id_recette, int id_etapes)
-        {
-            return _etapesRecetteRepository.GetEtapesRecetteById(id_recette, id_etapes);
-        }
+        //public EtapesRecette GetEtapesRecetteById(int id_recette, int id_etapes)
+        //{
+        //    return _etapesRecetteRepository.GetEtapesRecetteById(id_recette, id_etapes);
+        //}
 
 
         public EtapesRecette? GetEtapesRecetteByName(string nom)

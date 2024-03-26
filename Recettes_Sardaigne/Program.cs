@@ -1,6 +1,10 @@
 using BLL.Services;
 using DAL.Interfaces;
 using DAL.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Recettes_Sardaigne.Tools;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,8 +39,24 @@ builder.Services.AddScoped<ICategorieRepository, CategorieRepository>(sp =>
 new CategorieRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
 builder.Services.AddScoped<CategorieService>();
 
+builder.Services.AddScoped<IUsersRepository, UsersRepository>(sp =>
+new UsersRepository(builder.Configuration.GetConnectionString("Recettes_sardes_DB")));
+builder.Services.AddScoped<UsersService>();
 
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenManager.key)),
+            ValidateLifetime = true,
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    }
+    );
 
 var app = builder.Build();
 

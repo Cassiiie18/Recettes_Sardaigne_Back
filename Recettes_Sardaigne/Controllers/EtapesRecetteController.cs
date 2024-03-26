@@ -20,20 +20,20 @@ namespace Recettes_Sardaigne.Controllers
             _etapesService = etapesService;
         }
 
-        [HttpGet]
-        public IActionResult GetAllEtapesRecettes()
-        {
-            List<EtapesRecette> etapesRecette = _etapesRecetteService.GetAllEtapesRecettes().ToList();
-            return Ok(etapesRecette);
-        }
+        //[HttpGet]
+        //public IActionResult GetAllEtapesRecettes()
+        //{
+        //    List<EtapesRecette> etapesRecette = _etapesRecetteService.GetAllEtapesRecettes().ToList();
+        //    return Ok(etapesRecette);
+        //}
 
-        [HttpGet("{id_recette}, {id_etapes}")]
-        public IActionResult GetEtapesRecetteById(int id_recette, int id_etapes)
-        {
-            var etapesR = _etapesRecetteService.GetEtapesRecetteById(id_recette, id_etapes);
+        //[HttpGet("{id_recette}, {id_etapes}")]
+        //public IActionResult GetEtapesRecetteById(int id_recette, int id_etapes)
+        //{
+        //    var etapesR = _etapesRecetteService.GetEtapesRecetteById(id_recette, id_etapes);
 
-            return Ok(etapesR);
-        }
+        //    return Ok(etapesR);
+        //}
 
 
 
